@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface GitHubApiService {
+internal interface GitHubApiService {
 
     @GET("users/{login}")
     suspend fun getUser(@Path("login") login: String): UserDto
