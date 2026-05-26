@@ -12,6 +12,7 @@ retrofit = "2.11.0"
 okhttp = "4.12.0"
 moshi = "1.15.2"
 coroutines = "1.9.0"
+coroutines-test = "1.9.0"
 lifecycle = "2.9.1"
 activity = "1.10.1"
 compose-bom = "2025.05.00"
@@ -40,6 +41,7 @@ moshi-codegen = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", v
 
 # Coroutines
 coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test" }
 
 # Lifecycle / ViewModel
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }

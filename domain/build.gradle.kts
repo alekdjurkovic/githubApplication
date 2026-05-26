@@ -4,4 +4,6 @@ plugins {
 
 dependencies {
     implementation(libs.coroutines.android)
+    testImplementation(libs.junit)
+    testImplementation(libs.coroutines.test)
 }
