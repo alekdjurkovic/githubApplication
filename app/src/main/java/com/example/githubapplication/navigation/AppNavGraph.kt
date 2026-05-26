@@ -1,5 +1,6 @@
 package com.example.githubapplication.navigation
 
+import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -20,7 +21,7 @@ fun AppNavGraph(navController: NavHostController) {
         composable(ROUTE_REPOS) {
             UserReposScreen(
                 onNavigateToRepoDetail = { repoName ->
-                    navController.navigate("repo_detail/$repoName")
+                    navController.navigate("repo_detail/${Uri.encode(repoName)}")
                 }
             )
         }

@@ -13,8 +13,6 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-private const val GITHUB_USER = "octocat"
-
 @HiltViewModel
 class UserReposViewModel @Inject constructor(
     private val getUserReposUseCase: GetUserReposUseCase,
@@ -40,7 +38,7 @@ class UserReposViewModel @Inject constructor(
     private fun loadRepos() {
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true, error = null)
-            when (val result = getUserReposUseCase(GITHUB_USER)) {
+            when (val result = getUserReposUseCase()) {
                 is DataResult.Success ->
                     _state.value = _state.value.copy(isLoading = false, repos = result.data)
                 is DataResult.Error ->

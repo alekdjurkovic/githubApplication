@@ -36,6 +36,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -46,6 +47,7 @@ import com.example.github.domain.model.Repo
 import com.example.github.domain.model.Tag
 import com.example.github.domain.model.User
 import com.example.github.domain.usecase.RepoDetails
+import com.example.githubapplication.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -58,12 +60,12 @@ fun RepoDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(state.details?.repo?.name ?: "Repository") },
+                title = { Text(state.details?.repo?.name ?: stringResource(R.string.repo_detail_title_fallback)) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.repo_detail_back_content_description),
                             tint = MaterialTheme.colorScheme.onPrimary,
                         )
                     }
@@ -97,7 +99,6 @@ fun RepoDetailScreen(
 
 @Composable
 private fun RepoDetailContent(details: RepoDetails) {
-    // The entire screen — header + tag list — scrolls as one LazyColumn.
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(bottom = 16.dp),
@@ -106,7 +107,7 @@ private fun RepoDetailContent(details: RepoDetails) {
             RepoHeader(user = details.user, repo = details.repo)
             HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
             Text(
-                text = "Tags (${details.tags.size})",
+                text = stringResource(R.string.repo_detail_tags_header, details.tags.size),
                 style = MaterialTheme.typography.titleSmall,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
             )
@@ -115,7 +116,7 @@ private fun RepoDetailContent(details: RepoDetails) {
         if (details.tags.isEmpty()) {
             item {
                 Text(
-                    text = "No tags found",
+                    text = stringResource(R.string.repo_detail_no_tags),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(horizontal = 16.dp),
@@ -142,7 +143,7 @@ private fun RepoHeader(user: User, repo: Repo) {
         ) {
             AsyncImage(
                 model = user.avatarUrl,
-                contentDescription = "${user.login} avatar",
+                contentDescription = stringResource(R.string.repo_detail_avatar_content_description, user.login),
                 modifier = Modifier
                     .size(56.dp)
                     .clip(CircleShape),
@@ -153,7 +154,7 @@ private fun RepoHeader(user: User, repo: Repo) {
                     style = MaterialTheme.typography.titleMedium,
                 )
                 Text(
-                    text = "@${user.login}",
+                    text = stringResource(R.string.repo_detail_user_handle, user.login),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
@@ -181,14 +182,14 @@ private fun RepoHeader(user: User, repo: Repo) {
 
         Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
             StatChip(
-                icon = { Icon(Icons.Filled.ForkRight, contentDescription = "Forks") },
+                icon = { Icon(Icons.Filled.ForkRight, contentDescription = stringResource(R.string.repo_detail_forks_content_description)) },
                 value = repo.forksCount.toString(),
-                label = "Forks",
+                label = stringResource(R.string.repo_detail_forks_label),
             )
             StatChip(
-                icon = { Icon(Icons.Filled.RemoveRedEye, contentDescription = "Watchers") },
+                icon = { Icon(Icons.Filled.RemoveRedEye, contentDescription = stringResource(R.string.repo_detail_watchers_content_description)) },
                 value = repo.watchersCount.toString(),
-                label = "Watchers",
+                label = stringResource(R.string.repo_detail_watchers_label),
             )
         }
 

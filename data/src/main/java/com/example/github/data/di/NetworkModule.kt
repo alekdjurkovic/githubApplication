@@ -1,5 +1,6 @@
 package com.example.github.data.di
 
+import com.example.github.data.BuildConfig
 import com.example.github.data.api.GitHubApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -30,7 +31,8 @@ object NetworkModule {
     fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(
             HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
+                level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY
+                        else HttpLoggingInterceptor.Level.NONE
             }
         )
         .build()

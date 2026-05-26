@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">GitHubApplication</string>
+
+    <!-- UserReposScreen -->
+    <string name="repos_screen_title">octocat\'s Repositories</string>
+    <string name="repos_empty">No repositories found</string>
+    <string name="repos_retry">Retry</string>
+    <plurals name="repos_open_issues">
+        <item quantity="one">%d open issue</item>
+        <item quantity="other">%d open issues</item>
+    </plurals>
+
+    <!-- RepoDetailScreen -->
+    <string name="repo_detail_title_fallback">Repository</string>
+    <string name="repo_detail_back_content_description">Back</string>
+    <string name="repo_detail_tags_header">Tags (%d)</string>
+    <string name="repo_detail_no_tags">No tags found</string>
+    <string name="repo_detail_user_handle">@%s</string>
+    <string name="repo_detail_avatar_content_description">%s avatar</string>
+    <string name="repo_detail_forks_label">Forks</string>
+    <string name="repo_detail_forks_content_description">Forks</string>
+    <string name="repo_detail_watchers_label">Watchers</string>
+    <string name="repo_detail_watchers_content_description">Watchers</string>
 </resources>

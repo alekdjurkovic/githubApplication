@@ -12,8 +12,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-private const val GITHUB_USER = "octocat"
-
 @HiltViewModel
 class RepoDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
@@ -37,7 +35,7 @@ class RepoDetailViewModel @Inject constructor(
     private fun loadDetails(repoName: String) {
         viewModelScope.launch {
             _state.value = _state.value.copy(isLoading = true, error = null)
-            when (val result = getRepoDetailsUseCase(GITHUB_USER, repoName)) {
+            when (val result = getRepoDetailsUseCase(repoName)) {
                 is DataResult.Success ->
                     _state.value = _state.value.copy(isLoading = false, details = result.data)
                 is DataResult.Error ->
